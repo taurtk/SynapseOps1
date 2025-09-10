@@ -1,0 +1,34 @@
+Core Vision:
+Create a two-stage, futuristic, and intelligent web interface that is both visually stunning and pleasant to the eyes. The design must be directly inspired by the SynapseOps logo, refined for visual comfort and a premium, high-tech user experience.
+
+Final Color Palette:
+
+Primary Accent: Calm Cerulean Blue (#4D9DE0)
+
+Background: Deep Slate Blue (#1A202C)
+
+Text & Neutrals: Soft Off-White (#E6F1FF)
+
+## Part 1: The Welcome Screen
+Background: A Deep Slate Blue gradient. Overlay a very subtle, slowly animating network of nodes and lines. To add visual interest and depth, also include faint, abstract HUD-style elements. Think of thin, glowing Calm Cerulean Blue circles, arcs, and bracket-like shapes. These should be semi-transparent and positioned asymmetrically to frame the central content without being distracting.
+
+Central Element: The SynapseOps logomark (the 'S' symbol) should float directly above the logotype (the words 'SYNAPSE OPS'). Crucially, remove any square box or frame around these elements. They should appear directly on the background for a cleaner, more integrated look. The symbol's nodes should have a gentle, rhythmic pulse of Calm Cerulean Blue.
+
+Greeting Text: "Welcome to the company! Here's your assistant to get you started." in a Soft Off-White color using a modern, clean sans-serif font.
+
+"Next" Button: A transparent, pill-shaped button with a thin, glowing Calm Cerulean Blue border and text. On hover, the button's background should fill with a soft blue glow.
+
+## Part 2: The Chat Interface
+Layout: The Deep Slate Blue animated background persists. The chat window is centered and uses a "glassmorphism" (frosted glass) effect.
+
+Chat Window: A semi-transparent dark panel with a soft blur and a thin, glowing Calm Cerulean Blue border to create a "holographic display" feel.
+
+Chat Bubbles:
+
+User's Messages: Aligned to the right. A solid, dark charcoal grey bubble with Soft Off-White text.
+
+Bot's Messages: Aligned to the left. A similar dark charcoal grey, but with a thin, vertical Calm Cerulean Blue line on the left edge.
+
+Input Area: A clean, dark input field. When the user clicks to type, a soft, glowing Calm Cerulean Blue line appears underneath it. The "Send" button should be an icon of the same blue.
+
+Branding Watermark: Inside the main chat message area (where messages will appear), place the text "created by 'SynapseOps'". It should be positioned in the bottom-center or bottom-right, using the Soft Off-White text color with a very low opacity (around 10-15%). It must be subtle enough that it does not interfere with reading the chat messages that will appear over it.
