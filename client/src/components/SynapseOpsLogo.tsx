@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import synapseLogoPath from '@assets/ariri-removebg-preview_1757524973293.png';
+import synapseLogoPath from '@assets/ChatGPT_Image_Sep_10__2025__11_00_27_PM-removebg-preview (1)_1757525608000.png';
 
 export function SynapseOpsLogo() {
   const [pulse, setPulse] = useState(0);
