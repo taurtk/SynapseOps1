@@ -1,0 +1,59 @@
+Hello, please update my chatbot's code to connect it to my live AWS Lex backend.
+
+Currently, the "Send" button is not working correctly. You need to replace its existing logic with a direct integration to AWS Lex using the provided code block. This new code is fully configured with the final, correct IDs.
+
+Here are the steps:
+
+Find the main chat component file (the .tsx file).
+
+Completely replace any existing sendMessage function and AWS configuration with the following complete TypeScript code.
+
+TypeScript
+
+import AWS from 'aws-sdk';
+
+// Define a type for our chat messages
+interface Message {
+  sender: 'user' | 'bot';
+  text: string;
+}
+
+// AWS Configuration with Final IDs
+AWS.config.region = "us-east-1";
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: "us-east-1:31a9bdff-be5a-430d-b330-eb6f965ca120"
+});
+const lexruntime = new AWS.LexRuntimeV2();
+
+// The function that sends the message to Lex
+const sendMessage = async (userInput: string, messages: Message[], setMessages: React.Dispatch<React.SetStateAction<Message[]>>) => {
+    const text = userInput.trim();
+    if (!text) return;
+
+    const newUserMessage: Message = { sender: 'user', text: text };
+    setMessages([...messages, newUserMessage]);
+
+    const params = {
+        botId: "VJE6YGSH17",
+        botAliasId: "SULA84Q2H9",
+        localeId: "en_US",
+        sessionId: "session-" + Date.now(),
+        text: text
+    };
+
+    try {
+        const data = await lexruntime.recognizeText(params).promise();
+        let botResponse: Message = { sender: 'bot', text: "" };
+        if (data.messages) {
+            botResponse.text = data.messages.map(msg => msg.content).join(' ');
+        } else {
+            botResponse.text = "Sorry, I didn't quite understand.";
+        }
+        setMessages(prev => [...prev, botResponse]);
+    } catch (err) {
+        console.error(err);
+        const errorResponse: Message = { sender: 'bot', text: "Error: Connection failed." };
+        setMessages(prev => [...prev, errorResponse]);
+    }
+};
+Integrate the Logic: Ensure that the React component's state is correctly set up with useState to manage messages. The "Send" button's onClick event must call this new sendMessage function, and the text input must be correctly linked.
