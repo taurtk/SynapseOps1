@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { apiRequest } from '@/lib/queryClient';
 import { AnimatedBackground } from './AnimatedBackground';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,46 +10,56 @@ interface Message {
   id: string;
   content: string;
   isUser: boolean;
-  timestamp: Date;
+  sessionId: string;
+  createdAt: Date;
 }
 
 export function ChatInterface() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      content: 'Hello! I\'m your SynapseOps assistant. How can I help you today?',
-      isUser: false,
-      timestamp: new Date()
+  const [sessionId] = useState(() => `session-${Date.now()}`);
+  const queryClient = useQueryClient();
+  
+  // Fetch messages for this session
+  const { data: messages = [], isLoading } = useQuery({
+    queryKey: ['/api/messages', sessionId],
+    queryFn: () => fetch(`/api/messages/${sessionId}`).then(res => res.json())
+  });
+  
+  // Add initial welcome message if no messages exist
+  useEffect(() => {
+    if (messages.length === 0 && !isLoading) {
+      sendMessageMutation.mutate({
+        content: "Hello! I'm your SynapseOps assistant. How can I help you today?",
+        isUser: false,
+        sessionId
+      });
     }
-  ]);
+  }, [messages.length, isLoading, sessionId]);
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+
+  // Send message mutation
+  const sendMessageMutation = useMutation({
+    mutationFn: async (messageData: { content: string; isUser: boolean; sessionId: string }) => {
+      const response = await apiRequest('POST', '/api/messages', messageData);
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/messages', sessionId] });
+    }
+  });
 
   const sendMessage = () => {
     if (!inputValue.trim()) return;
 
     console.log('Sending message:', inputValue);
     
-    const userMessage: Message = {
-      id: Date.now().toString(),
+    sendMessageMutation.mutate({
       content: inputValue,
       isUser: true,
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, userMessage]);
+      sessionId
+    });
+    
     setInputValue('');
-
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: 'Thank you for your message! This is a design prototype. In the full application, I\'ll provide intelligent responses to help you.',
-        isUser: false,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, botMessage]);
-    }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -108,6 +120,9 @@ export function ChatInterface() {
                   }}
                 >
                   <p className="text-sm leading-relaxed">{message.content}</p>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {new Date(message.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
                 </div>
               </div>
             ))}
