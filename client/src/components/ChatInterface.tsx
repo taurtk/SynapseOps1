@@ -28,7 +28,7 @@ export function ChatInterface() {
   useEffect(() => {
     if (messages.length === 0 && !isLoading) {
       sendMessageMutation.mutate({
-        content: "Hello! I'm your SynapseOps assistant. How can I help you today?",
+        content: "Hello! I'm your Onboarding assistant. How can I help you today?",
         isUser: false,
         sessionId
       });
@@ -87,7 +87,7 @@ export function ChatInterface() {
           {/* Chat Header */}
           <div className="flex items-center justify-between p-4 border-b border-primary/20">
             <h2 className="text-lg font-semibold text-foreground" data-testid="chat-title">
-              SynapseOps Assistant
+              Onboarding Assistant
             </h2>
             <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
           </div>

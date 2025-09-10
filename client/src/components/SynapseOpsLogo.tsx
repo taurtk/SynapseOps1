@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import synapseLogoPath from '@assets/ChatGPT_Image_Sep_10__2025__11_00_27_PM-removebg-preview (1)_1757525608000.png';
+import synapseLogoPath from '@assets/ChatGPT_Image_Sep_10__2025__11_13_24_PM-removebg-preview_1757526594061.png';
 
 export function SynapseOpsLogo() {
   const [pulse, setPulse] = useState(0);
@@ -36,10 +36,13 @@ export function SynapseOpsLogo() {
         />
       </div>
       
-      {/* Company Name */}
-      <div className="text-center space-y-2">
-        <h1 className="text-4xl font-bold tracking-wide text-foreground" data-testid="company-name">
+      {/* Company Name and Main Title */}
+      <div className="text-center space-y-4">
+        <div className="text-sm font-medium tracking-wide text-foreground/80" data-testid="company-name">
           SYNAPSE <span className="text-primary">OPS</span>
+        </div>
+        <h1 className="text-3xl font-bold tracking-wide text-foreground" data-testid="main-title">
+          Onboarding Assistant
         </h1>
       </div>
     </div>
