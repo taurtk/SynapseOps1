@@ -14,7 +14,7 @@ export function SynapseOpsLogo() {
   const pulseOpacity = 0.6 + 0.4 * Math.sin(pulse * 0.15);
 
   return (
-    <div className="flex flex-col items-center space-y-4" data-testid="synapse-logo-container">
+    <div className="flex flex-col items-center space-y-3" data-testid="synapse-logo-container">
       {/* Logo Symbol with Pulsing Effect */}
       <div className="relative">
         <img 
