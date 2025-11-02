@@ -68,9 +68,6 @@ A modern, highly-integrated application designed to **eliminate manual HR and IT
     └── schema.ts    # Database schema definitions
 ```
 
-yaml
-Copy code
-
 ---
 
 ## ⚙️ Installation & Usage
@@ -82,12 +79,10 @@ Copy code
 Install Dependencies
 
 bash
-Copy code
 npm install
 Build the Production Dashboard
 
 bash
-Copy code
 npm run build
 The output in the dist/ folder is uploaded directly to AWS S3 static hosting.
 
