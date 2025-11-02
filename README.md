@@ -52,13 +52,21 @@ A modern, highly-integrated application designed to **eliminate manual HR and IT
 
 ## 📂 Project Structure
 
-├── client/ # The core React/TypeScript Dashboard UI
-│ ├── src/
-│ │ ├── components/ # Reusable UI components and widgets
-│ │ ├── pages/ # Dashboard pages
-│ │ └── lib/ # Utility functions and the airtable.ts connector
-├── Chatbot/ # Standalone codebase for the AWS Lex Chatbot UI
-├── README.md # Documentation and Project Overview
+
+```
+├── client/          # Frontend React application
+│   ├── src/
+│   │   ├── components/  # Reusable UI components
+│   │   ├── pages/       # Dashboard pages
+│   │   ├── hooks/       # Custom React hooks
+│   │   └── lib/         # Utility functions and configurations
+├── server/          # Backend Node.js server
+│   ├── index.ts     # Server entry point
+│   ├── routes.ts    # API routes
+│   └── storage.ts   # Database operations
+└── shared/          # Shared types and schemas
+    └── schema.ts    # Database schema definitions
+```
 
 yaml
 Copy code
@@ -86,4 +94,4 @@ The output in the dist/ folder is uploaded directly to AWS S3 static hosting.
 ## 🌐 Live Demo Access
 **Resource	Link**
 Live Dashboard	🔗 http://onboarding-dashboard-ui.s3-website-us-east-1.amazonaws.com/
-Demo Video (Google Drive)	🎥 View Demo on Google Drive
+Demo Video [(Google Drive)](https://drive.google.com/drive/folders/1Jc5hBiPkoo_eSIybTT8VHeVwzel89qaq?usp=sharing)	🎥 View Demo on Google Drive
