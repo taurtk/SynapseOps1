@@ -1,129 +1,102 @@
-# Dashboard
+# 🚀 SynapseOps: The Automated Employee Onboarding Hub
 
-A modern, responsive dashboard application built with React, TypeScript, and Node.js. Features a comprehensive admin interface with data visualization, user management, and real-time analytics.
+A modern, highly-integrated application designed to **eliminate manual HR and IT overhead** during employee onboarding by orchestrating workflows, managing tasks, and providing a personalized dashboard for new hires.
 
-## Features
+| Project Lead | Team Member | Team Member |
+| :--- | :--- | :--- |
+| **Sameer Ahmed** | Taufique | Bhavana Shah |
 
-- **Interactive Dashboard**: Comprehensive admin interface with real-time data visualization and analytics
-- **User Management**: Complete user authentication and authorization system with role-based access control
-- **Data Visualization**: Charts and graphs using Recharts for displaying metrics and KPIs
-- **Responsive Design**: Mobile-first approach with adaptive layouts using Tailwind CSS
-- **Modern UI Components**: Built with shadcn/ui components including tables, forms, and navigation
-- **Database Integration**: PostgreSQL database with Drizzle ORM for type-safe queries
-- **Session Management**: Secure session handling with express-session and connect-pg-simple
-- **API Integration**: RESTful API endpoints with proper error handling and validation
-- **Real-time Updates**: Live data updates using WebSockets and React Query
-- **Form Handling**: Advanced form management with React Hook Form and Zod validation
+-----
 
-## Technologies Used
+## 🎯 Problem Solved & Value Proposition
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS
-- **Backend**: Node.js, Express, TypeScript
-- **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: Passport.js with local strategy
-- **UI Components**: shadcn/ui, Radix UI
-- **Charts**: Recharts
-- **State Management**: React Query (TanStack Query)
-- **Forms**: React Hook Form with Zod validation
-- **Styling**: Tailwind CSS, PostCSS
-- **Deployment**: Replit
+| The Challenge (Fragmentation & Manual Work) | The Solution (SynapseOps Hub) |
+| :--- | :--- |
+| **Inefficient Data Flow:** HR/IT tasks are initiated via manual emails and spreadsheets, leading to data loss and delays. | **End-to-End Automation:** An **n8n workflow** instantly translates HR form data into action (tasks, calendar invites, emails), guaranteeing **zero data lag** and eliminating manual steps. |
+| **Poor Employee Experience:** New hires lack a single, clear source for their onboarding checklist and status. | **Personalized Live Dashboard:** A single-page application provides a real-time, custom view of **required tasks**, **accurate leave balances**, and **recent leave requests**. |
 
-## Installation
+-----
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd dashboard
-   ```
+## ✨ Key Features
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Onboarding Dashboard (The Working Product)
 
-3. Set up environment variables:
-   - Copy `.env.example` to `.env` and fill in your database credentials and other configuration
+  * **Dynamic Personalized View:** Consumes data directly from the **Airtable REST API**, filtering all content (tasks, leave balance, history) instantly based on the selected employee's name.
+  * **Near Real-time Status Sync:** Uses **React Query Polling** to automatically refresh the task checklist every 5 seconds, providing instant visual confirmation when HR marks a task as complete.
+  * **Comprehensive Leave Management:** Displays the total available leave days and a dynamic breakdown for **Annual, Sick, and Personal Leave**, calculated using **Airtable Rollup fields**.
+  * **Responsive Design:** Mobile-first approach with adaptive layouts using Tailwind CSS.
 
-4. Set up the database:
-   ```bash
-   npm run db:push
-   ```
+### Automation & Backend (The Engine)
 
-5. Start the development server:
-   ```bash
-   npm run dev
-   ```
+  * **Workflow Orchestration (n8n):** Triggers the entire pipeline from HR Form submission, executing simultaneous actions: **Task Creation**, **Google Calendar Event Setup**, and sending the **Welcome Email**.
+  * **Database:** **Airtable** serves as the structured, relational backend for all employee, task, and leave data.
 
-## Usage
+### Chatbot Integration
 
-1. Open your browser and navigate to `http://localhost:5173`
-2. Log in with your admin credentials
-3. Access various dashboard sections including analytics, user management, and settings
+  * **Embedded AI Support:** Features an integrated assistant powered by **AWS Lex** for real-time query resolution on common HR and IT onboarding topics.
 
-## Project Structure
+-----
+
+## 💻 Technologies Used
+
+| Category | Technologies |
+| :--- | :--- |
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS, shadcn/ui |
+| **Data/Backend** | **Airtable** (Headless CMS) |
+| **Automation** | **n8n** (Workflow Orchestration) |
+| **API/State** | **Airtable REST API**, React Query (TanStack Query) |
+| **AI/Chatbot** | **AWS Lex Runtime V2** |
+| **Hosting** | **AWS S3** (Static Dashboard Hosting) |
+
+-----
+
+## 📂 Project Structure
 
 ```
-├── client/          # Frontend React application
+├── client/          # The core React/TypeScript Dashboard UI
 │   ├── src/
-│   │   ├── components/  # Reusable UI components
+│   │   ├── components/  # Reusable UI components and widgets
 │   │   ├── pages/       # Dashboard pages
-│   │   ├── hooks/       # Custom React hooks
-│   │   └── lib/         # Utility functions and configurations
-├── server/          # Backend Node.js server
-│   ├── index.ts     # Server entry point
-│   ├── routes.ts    # API routes
-│   └── storage.ts   # Database operations
-└── shared/          # Shared types and schemas
-    └── schema.ts    # Database schema definitions
+│   │   └── lib/         # Utility functions and the airtable.ts connector
+├── Chatbot/         # Standalone codebase for the AWS Lex Chatbot UI
+├── README.md        # Documentation and Project Overview
 ```
+
+## ⚙️ Installation & Usage
+
+1.  **Clone the Repository:**
+
+    ```bash
+    git clone <repository-url>
+    cd SynapseOps1/client
+    ```
+
+2.  **Install Dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Build the Production Dashboard:**
+
+    ```bash
+    npm run build
+    ```
+
+    *(The output in the `dist/` folder is uploaded directly to the AWS S3 static site.)*
+
+-----
+
+## 🌐 Live Demo Access
+
+| Resource | Link |
+| :--- | :--- |
+| **Live Dashboard** | `http://onboarding-dashboard-ui.s3-website-us-east-1.amazonaws.com/` (Your AWS S3 Link) |
 
 ## Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run check` - Run TypeScript type checking
-- `npm run db:push` - Push database schema changes
+  - `npm run dev` - Start development server (local testing)
+  - `npm run build` - **Build the final production bundle**
+  - `npm run check` - Run TypeScript type checking
 
-## API Endpoints
-
-- `GET /api/users` - Get all users
-- `POST /api/users` - Create new user
-- `GET /api/analytics` - Get dashboard analytics data
-- `POST /api/auth/login` - User authentication
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
-
-## Chatbot
-## Features
-
-- Interactive chat interface with real-time messaging
-- Animated background for enhanced user experience
-- Responsive design with mobile support
-- Integration with AWS Lex for natural language processing
-- Modern UI components using shadcn/ui
-- TypeScript for type safety
-- Vite for fast development and building
-=======
-## Features
-
-- **Interactive Chat Interface**: Real-time messaging with persistent session management and conversation history
-- **AWS Lex Integration**: Advanced natural language processing using AWS Lex Runtime V2 with bot ID `VJE6YGSH17` and alias `SULA84Q2H9`
-- **Session State Management**: Maintains conversation context across messages with automatic session state handling
-- **Animated Background**: Dynamic visual effects using Framer Motion for an engaging user experience
-- **Responsive Design**: Mobile-first approach with adaptive layouts and touch-friendly interactions
-- **Modern UI Components**: Built with shadcn/ui components including buttons, inputs, and dialogs
-- **TypeScript Integration**: Full type safety with custom interfaces for messages and session management
-- **Real-time Updates**: Auto-scrolling message feed with timestamp tracking and smooth animations
-- **Error Handling**: Robust error handling for AWS Lex communication failures
-- **Cognito Authentication**: Secure AWS credentials using Cognito Identity Pool `us-east-1:31a9bdff-be5a-430d-b330-eb6f965ca120`
-
+-----
