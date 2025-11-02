@@ -126,4 +126,4 @@ This project is licensed under the MIT License.
 - **Real-time Updates**: Auto-scrolling message feed with timestamp tracking and smooth animations
 - **Error Handling**: Robust error handling for AWS Lex communication failures
 - **Cognito Authentication**: Secure AWS credentials using Cognito Identity Pool `us-east-1:31a9bdff-be5a-430d-b330-eb6f965ca120`
->>>>>>> REPLACE
+
